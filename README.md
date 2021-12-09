@@ -1,6 +1,6 @@
 # tw5-plugin-packer action
 
-![](https://img.shields.io/badge/Version-v0.0.1-green) [https://img.shields.io/badge/Join-TW5CPL-yellow](https://github.com/tiddly-gittly/TiddlyWiki-CPL)
+![](https://img.shields.io/badge/Version-v0.0.1-green) [![](https://img.shields.io/badge/Join-TW5CPL-yellow)](https://github.com/tiddly-gittly/TiddlyWiki-CPL)
 
 Don't know how to use automated build tools? Only know how to put plugins into HTML files? Have to manually export JSON files to publish to Release pages every time? If you are in the same boat, try this Action!
 
@@ -20,11 +20,11 @@ The `tw5-plugin-packer` will package the TiddlyWiki5 plugin folder you wrote int
 
 **Required(必填)** The path of the packed plugin file, default to `output/plugin.json`. 打包的插件文件的路径，默认为 `output/plugin.json`。
 
-## Example usage
+## Example usage 使用样例
 
 ```yaml
 - uses: tiddly-gittly/tw5-plugin-packer@v0.0.1
   with:
-    source: 'src'
-    output: 'dist/plugin.json'
+    source: "src"
+    output: "dist/plugin.json"
 ```
