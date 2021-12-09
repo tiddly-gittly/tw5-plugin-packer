@@ -1,0 +1,16 @@
+name: 'tw5-plugin-packer'
+author: 'Gk0Wk'
+description: 'Pack up your TiddlyWiki5 plugin folder to json file.'
+inputs:
+  source:
+    description: 'The root directory of your plugin, default to "src"'
+    required: true
+    default: 'src'
+  output:
+    description: 'The path of the packer plugin file, default to "output/plugin.json"'
+    required: true
+    default: '.'
+outputs: {}
+runs:
+  using: 'node16'
+  main: 'packup.js'
