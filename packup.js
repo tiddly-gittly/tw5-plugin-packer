@@ -10,17 +10,26 @@ function mkdirsSync(dirname) {
 
 try {
   // Get params
-  const SOURCE = core.getInput('source');
+  const SOURCE = core.getMultilineInput('source');
   const OUTPUT = core.getInput('output');
   // Boot tw5
   const tw = require('tiddlywiki/boot/boot').TiddlyWiki();
   tw.boot.argv = ['.'];
   tw.boot.boot();
-  // Load plugin folder
-  let pluginInfo = tw.loadPluginFolder(SOURCE, undefined);
-  // Output json file
-  mkdirsSync(path.dirname(OUTPUT));
-  fs.writeFileSync(OUTPUT, JSON.stringify(pluginInfo));
+  // Make output directory
+  mkdirsSync(OUTPUT);
+  // Load plugin folders
+  successPlugins = [];
+  SOURCE.forEach((plugin_source) => {
+    let pluginInfo = tw.loadPluginFolder(plugin_source, undefined);
+    if (typeof pluginInfo.title !== 'string' || pluginInfo.title === '') return;
+    let fileName = path.basename(tw.utils.generateTiddlerFilepath(pluginInfo.title, {})) + '.json';
+    let filePath = path.join(OUTPUT, fileName);
+    // Output json file
+    fs.writeFileSync(filePath, JSON.stringify(pluginInfo));
+    successPlugins.push(filePath);
+  });
+  core.setOutput('output-plugins', successPlugins);
 } catch (error) {
   core.setFailed(error.message);
 }

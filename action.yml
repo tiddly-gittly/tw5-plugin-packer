@@ -3,13 +3,15 @@ author: 'Gk0Wk'
 description: 'Pack up your TiddlyWiki5 plugin folder to json file.'
 inputs:
   source:
-    description: 'The root directory of your plugin, default to "src"'
+    description: 'The root directory of your plugin. You can add multiple paths in the form of one per line.'
     required: true
-    default: 'src'
   output:
-    description: 'The path of the packer plugin file, default to "output/plugin.json"'
-    required: true
-    default: '.'
+    description: 'The output path of the packed plugin files, default to "output".'
+    required: false
+    default: 'output'
+outputs:
+  output-plugins:
+    description: 'The JSON file path of the successfully exported plugin, stored as an array of strings in JSON format.'
 outputs: {}
 runs:
   using: 'node16'
