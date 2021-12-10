@@ -1,6 +1,6 @@
 name: 'tw5-plugin-packer'
 author: 'Gk0Wk'
-description: 'Pack up your TiddlyWiki5 plugin folder to JSON files.'
+description: 'Pack up your TiddlyWiki5 plugin folders to JSON files.'
 inputs:
   source:
     description: 'The root directory of your plugin. You can add multiple paths in the form of one per line.'
