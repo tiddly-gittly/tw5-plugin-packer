@@ -12,7 +12,6 @@ inputs:
 outputs:
   output-plugins:
     description: 'The JSON file path of the successfully exported plugin, stored as an array of strings in JSON format.'
-outputs: {}
 runs:
   using: 'node16'
   main: 'packup.js'
