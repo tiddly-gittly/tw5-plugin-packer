@@ -1,6 +1,6 @@
 # tw5-plugin-packer action
 
-![](https://img.shields.io/badge/Version-v0.0.1-green) [![](https://img.shields.io/badge/Join-TW5CPL-yellow)](https://github.com/tiddly-gittly/TiddlyWiki-CPL)
+![](https://img.shields.io/badge/Version-v0.0.2-green) [![](https://img.shields.io/badge/Join-TW5CPL-yellow)](https://github.com/tiddly-gittly/TiddlyWiki-CPL)
 
 Don't know how to use automated build tools? Only know how to put plugins into HTML files? Have to manually export JSON files to publish to Release pages every time? If you are in the same boat, try this Action!
 
@@ -14,17 +14,45 @@ The `tw5-plugin-packer` will package the TiddlyWiki5 plugin folder you wrote int
 
 ### `source`
 
-**Required(必填)** The root directory of your plugin, i.e. the directory that includes the `plugin.info` file, defaults to `src`. 你的插件的根目录，即包括 `plugin.info` 文件的目录，默认为 `src`。
+**Required(必填)** The root directory of your plugin. You can add multiple paths in the form of one per line. 你的插件的根目录。你可以以每行一个的形式添加多个路径。
 
 ### `output`
 
-**Required(必填)** The path of the packed plugin file, default to `output/plugin.json`. 打包的插件文件的路径，默认为 `output/plugin.json`。
+**Optional(选填)** The output path of the packed plugin files, default to `output`. 打包的插件文件的输出路径，默认为 `output` 。
+
+> #### Note 注意
+>
+> For packaged plugins, the same naming scheme as in TiddlyWiki5 for tiddler will be used. For example, for a plugin called `$:/plugins/foo/bar`, the packaged file name will be `$__plugins_foo_bar.json`.
+>
+> 对于打包后的插件，将使用和 TiddlyWiki5 中对 tiddler 一样的命名方法。例如对于一个叫 `$:/plugins/foo/bar` 的插件，其打包后的文件名为 `$__plugins_foo_bar.json` 。
+
+## Outputs 输出
+
+### `output-plugins`
+
+The JSON file path of the successfully exported plugin, stored as an array of strings in JSON format.
+
+成功导出的插件的JSON文件路径，用JSON格式的字符串数组储存。
 
 ## Example usage 使用样例
 
+In the simplest case, pack one plugin at a time 最简单的情况，一次只打包一个插件：
+
 ```yaml
-- uses: tiddly-gittly/tw5-plugin-packer@v0.0.1
+- uses: tiddly-gittly/tw5-plugin-packer@v0.0.2
   with:
     source: "src"
-    output: "dist/plugin.json"
+    output: "dist"
+```
+
+You can also package multiple plugins at once 也可以一次打包多个插件：
+
+```yaml
+- uses: tiddly-gittly/tw5-plugin-packer@v0.0.2
+  with:
+    source: |
+      src1
+      src2
+      src3
+    output: "dist"
 ```
