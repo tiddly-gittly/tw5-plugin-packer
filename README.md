@@ -26,20 +26,54 @@ The `tw5-plugin-packer` will package the TiddlyWiki5 plugin folders you wrote in
 >
 > 对于打包后的插件，将使用和 TiddlyWiki5 中对 tiddler 一样的命名方法。例如对于一个叫 `$:/plugins/foo/bar` 的插件，其打包后的文件名为 `$__plugins_foo_bar.json` 。
 
+### `minify`
+
+**Optional(选填)** Wheter to minify js and css tiddlers, default to `true`. 是否对 js 和 css 条目进行最小化处理，默认为`true`。
+
+- Use [UglifyJS](https://github.com/mishoo/UglifyJS/tree/harmony#minify-options) to compress JS tiddlers. Use [CleanCSS](https://github.com/clean-css/clean-css#use) to compress CSS tiddlers.
+- 使用 [UglifyJS](https://github.com/mishoo/UglifyJS/tree/harmony#minify-options) 对 JS 条目进行压缩。使用 [CleanCSS](https://github.com/clean-css/clean-css#use) 对 CSS 条目进行压缩。
+
+### `uglifyjs-options`
+
+**Optional(选填)** JSON string of options for UglifyJS. UglifyJS 的选项的 JSON 字符串。
+
+Default Value 默认值：
+
+```json
+{
+  "warnings": false,
+  "ie8": true,
+  "safari10": true
+}
+```
+
+### `cleancss-options`
+
+**Optional(选填)** JSON string of options for CleanCSS. CleanCSS 的选项的 JSON 字符串。
+
+Default Value 默认值：
+
+```json
+{
+  "compatibility": "ie8",
+  "level": 2
+}
+```
+
 ## Outputs 输出
 
 ### `output-plugins`
 
 The JSON file path of the successfully exported plugin, stored as an array of strings in JSON format.
 
-成功导出的插件的JSON文件路径，用JSON格式的字符串数组储存。
+成功导出的插件的 JSON 文件路径，用 JSON 格式的字符串数组储存。
 
 ## Example usage 使用样例
 
 In the simplest case, pack one plugin at a time 最简单的情况，一次只打包一个插件：
 
 ```yaml
-- uses: tiddly-gittly/tw5-plugin-packer@v0.0.3
+- uses: tiddly-gittly/tw5-plugin-packer@v0.0.4
   with:
     source: "src"
     output: "dist"
@@ -48,7 +82,7 @@ In the simplest case, pack one plugin at a time 最简单的情况，一次只�
 You can also package multiple plugins at once 也可以一次打包多个插件：
 
 ```yaml
-- uses: tiddly-gittly/tw5-plugin-packer@v0.0.3
+- uses: tiddly-gittly/tw5-plugin-packer@v0.0.4
   with:
     source: |
       src1
