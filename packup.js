@@ -5,9 +5,11 @@ const UglifyJS = require('uglify-es');
 const CleanCSS = new require('clean-css');
 
 function mkdirsSync(dirname) {
-    if (!fs.existsSync(dirname) && mkdirsSync(path.dirname(dirname))) {
+    if (fs.existsSync(dirname)) return true;
+    if (mkdirsSync(path.dirname(dirname))) {
         return fs.mkdirSync(dirname);
     }
+    return false;
 }
 
 try {
@@ -38,7 +40,7 @@ try {
     tw.boot.argv = ['.'];
     tw.boot.boot();
     // Make output directory
-    mkdirsSync(OUTPUT);
+    if (mkdirsSync(OUTPUT) === false) throw new Error(`Failed to create directory ${OUTPUT}.`);
     // Load plugin folders
     const successPlugins = [];
     SOURCE.forEach((plugin_source) => {
@@ -54,13 +56,16 @@ try {
                 try {
                     if (tiddler.type === 'application/javascript') {
                         let minified = UglifyJS.minify(tiddler.text, UglifyJSOption).code;
-                        if (code !== undefined) tiddler.text = minified;
+                        if (minified !== undefined) tiddler.text = minified;
                     } else if (tiddler.type === 'text/css') {
                         let minified = new CleanCSS(CleanCSSOptions).minify(tiddler.text).styles;
-                        if (code !== undefined) tiddler.text = minified;
+                        if (minified !== undefined) tiddler.text = minified;
                     }
-                } catch (e) {}
+                } catch (e) {
+                    console.error(`Failed to minify ${tiddler.title}.`);
+                }
             }
+            console.log(tiddlersJson);
             pluginInfo.text = JSON.stringify(tiddlersJson);
         }
         // Save JSON file
