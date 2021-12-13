@@ -65,7 +65,6 @@ try {
                     console.error(`Failed to minify ${tiddler.title}.`);
                 }
             }
-            console.log(tiddlersJson);
             pluginInfo.text = JSON.stringify(tiddlersJson);
         }
         // Save JSON file

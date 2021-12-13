@@ -1,6 +1,6 @@
 # tw5-plugin-packer action
 
-[![](https://img.shields.io/badge/Version-v0.0.3-green)](https://github.com/tiddly-gittly/tw5-plugin-packer/releases/tag/v0.0.3) [![](https://img.shields.io/badge/Join-TW5CPL-yellow)](https://github.com/tiddly-gittly/TiddlyWiki-CPL)
+[![](https://img.shields.io/badge/Version-v0.0.4-green)](https://github.com/tiddly-gittly/tw5-plugin-packer/releases/tag/v0.0.4) [![](https://img.shields.io/badge/Join-TW5CPL-yellow)](https://github.com/tiddly-gittly/TiddlyWiki-CPL)
 
 Don't know how to use automated build tools? Only know how to put plugins into HTML files? Have to manually export JSON files to publish to Release pages every time? If you are in the same boat, try this Action!
 
