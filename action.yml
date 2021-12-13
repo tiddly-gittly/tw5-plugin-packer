@@ -9,6 +9,18 @@ inputs:
     description: 'The output path of the packed plugin files, default to "output".'
     required: false
     default: 'output'
+  minify:
+    description: 'Wheter to minify js and css tiddlers, default to "true".'
+    required: false
+    default: true
+  uglifyjs-options:
+    description: 'JSON string of options for UglifyJS. See readme for default values.'
+    required: false
+    default: ''
+  cleancss-options:
+    description: 'JSON string of options for CleanCSS. See readme for default values.'
+    required: false
+    default: ''
 outputs:
   output-plugins:
     description: 'The JSON file path of the successfully exported plugin, stored as an array of strings in JSON format.'
