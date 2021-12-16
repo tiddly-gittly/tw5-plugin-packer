@@ -1,6 +1,6 @@
 # tw5-plugin-packer action
 
-[![](https://img.shields.io/badge/Version-v0.0.4-green)](https://github.com/tiddly-gittly/tw5-plugin-packer/releases/tag/v0.0.4) [![](https://img.shields.io/badge/Join-TW5CPL-yellow)](https://github.com/tiddly-gittly/TiddlyWiki-CPL)
+[![](https://img.shields.io/badge/Version-v0.0.5-green)](https://github.com/tiddly-gittly/tw5-plugin-packer/releases/tag/v0.0.5) [![](https://img.shields.io/badge/Join-TW5CPL-yellow)](https://github.com/tiddly-gittly/TiddlyWiki-CPL)
 
 Don't know how to use automated build tools? Only know how to put plugins into HTML files? Have to manually export JSON files to publish to Release pages every time? If you are in the same boat, try this Action!
 
@@ -73,7 +73,7 @@ The JSON file path of the successfully exported plugin, stored as an array of st
 In the simplest case, pack one plugin at a time 最简单的情况，一次只打包一个插件：
 
 ```yaml
-- uses: tiddly-gittly/tw5-plugin-packer@v0.0.4
+- uses: tiddly-gittly/tw5-plugin-packer@v0.0.5
   with:
     source: "src"
     output: "dist"
@@ -82,7 +82,7 @@ In the simplest case, pack one plugin at a time 最简单的情况，一次只�
 You can also package multiple plugins at once 也可以一次打包多个插件：
 
 ```yaml
-- uses: tiddly-gittly/tw5-plugin-packer@v0.0.4
+- uses: tiddly-gittly/tw5-plugin-packer@v0.0.5
   with:
     source: |
       src1
