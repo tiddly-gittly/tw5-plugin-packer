@@ -14,7 +14,7 @@ The `tw5-plugin-packer` will package the TiddlyWiki5 plugin folders you wrote in
 
 ### `source`
 
-**Required(必填)** The root directory of your plugin. You can add multiple paths in the form of one per line. 你的插件的根目录。你可以以每行一个的形式添加多个路径。
+**Required(必填)** The root directory of your plugin. You can add multiple paths in the form of one per line, and **not to add quotation marks to each line**! 你的插件的根目录。你可以以每行一个的形式添加多个路径，**注意每行不要加引号**！
 
 ### `output`
 
@@ -73,7 +73,10 @@ The JSON file path of the successfully exported plugin, stored as an array of st
 In the simplest case, pack one plugin at a time 最简单的情况，一次只打包一个插件：
 
 ```yaml
-- uses: tiddly-gittly/tw5-plugin-packer@v0.0.5
+# It's necessary to use checkout action to fetch your repo, or action cannot find your plugin files!
+# 需要使用checkout action来获取项目，否则无法找到你的插件文件！
+- uses: actions/checkout@v2
+- uses: tiddly-gittly/tw5-plugin-packer@v0.0.6
   with:
     source: "src"
     output: "dist"
@@ -82,7 +85,10 @@ In the simplest case, pack one plugin at a time 最简单的情况，一次只�
 You can also package multiple plugins at once 也可以一次打包多个插件：
 
 ```yaml
-- uses: tiddly-gittly/tw5-plugin-packer@v0.0.5
+# It's necessary to use checkout action to fetch your repo, or action cannot find your plugin files!
+# 需要使用checkout action来获取项目，否则无法找到你的插件文件！
+- uses: actions/checkout@v2
+- uses: tiddly-gittly/tw5-plugin-packer@v0.0.6
   with:
     source: |
       src1

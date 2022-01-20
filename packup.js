@@ -38,7 +38,7 @@ try {
     console.log(` - Output: ${OUTPUT}`);
     console.log(' - Input:');
     SOURCE.forEach((plugin_source) => {
-        console.log(`  - ${plugin_source}`);
+        console.log(`   - ${plugin_source}`);
     });
     console.log(' - UglifyJSOption:');
     console.log(UglifyJSOption);
@@ -59,10 +59,10 @@ try {
         console.log(` - Packing up plugin ${plugin_source}.`);
         const pluginInfo = tw.loadPluginFolder(plugin_source, undefined);
         if (!pluginInfo || typeof pluginInfo.title !== 'string' || pluginInfo.title === '') {
-            console.log(` - Plugin is unavailable, dose it exist and has a plugin.info file?`);
+            console.log(`   - Plugin is unavailable, dose it exist and has a plugin.info file?`);
             return;
         }
-        console.log(` - Plugin name is ${pluginInfo.title}.`);
+        console.log(`   - Plugin name is ${pluginInfo.title}.`);
         // Minify tiddlers
         if (MINIFY) {
             const tiddlersJson = JSON.parse(pluginInfo.text);
@@ -72,11 +72,11 @@ try {
                 const tiddler = tiddlersJson.tiddlers[tiddlers[i]];
                 try {
                     if (tiddler.type === 'application/javascript') {
-                        console.log(`  -Try minifying JS tiddler ${tiddlers[i]}.`);
+                        console.log(`   - Try minifying JS tiddler ${tiddlers[i]}.`);
                         const minified = UglifyJS.minify(tiddler.text, UglifyJSOption).code;
                         if (minified !== undefined) tiddler.text = minified;
                     } else if (tiddler.type === 'text/css') {
-                        console.log(`  -Try minifying CSS tiddler ${tiddlers[i]}.`);
+                        console.log(`   - Try minifying CSS tiddler ${tiddlers[i]}.`);
                         const minified = new CleanCSS(CleanCSSOptions).minify(tiddler.text).styles;
                         if (minified !== undefined) tiddler.text = minified;
                     }
@@ -88,11 +88,11 @@ try {
             pluginInfo.text = JSON.stringify(tiddlersJson);
         }
         // Save JSON file
-        console.log(`  - Saving plugin ${pluginInfo.title}.`);
+        console.log(`   - Saving plugin ${pluginInfo.title}.`);
         const fileName = path.basename(tw.utils.generateTiddlerFilepath(pluginInfo.title, {})) + '.json';
         const filePath = path.join(OUTPUT, fileName);
         fs.writeFileSync(filePath, JSON.stringify(pluginInfo));
-        console.log(`  - Plugin ${pluginInfo.title} has been saved to ${filePath}.`);
+        console.log(`   - Plugin ${pluginInfo.title} has been saved to ${filePath}.`);
         successPlugins.push(filePath);
     });
     core.setOutput('output-plugins', successPlugins);
