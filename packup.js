@@ -54,9 +54,13 @@ try {
     const successPlugins = [];
     console.log(`Start packing up ${SOURCE.length} plugins:`);
     SOURCE.forEach((plugin_source) => {
+        console.log(` - Packing up plugin ${plugin_source}.`);
         const pluginInfo = tw.loadPluginFolder(plugin_source, undefined);
-        if (typeof pluginInfo.title !== 'string' || pluginInfo.title === '') return;
-        console.log(` - Packing up plugin ${pluginInfo.title}.`);
+        if (!pluginInfo || typeof pluginInfo.title !== 'string' || pluginInfo.title === '') {
+            console.log(` - Plugin is unavailable, skip.`);
+            return;
+        }
+        console.log(` - Plugin name is ${pluginInfo.title}.`);
         // Minify tiddlers
         if (MINIFY) {
             const tiddlersJson = JSON.parse(pluginInfo.text);
