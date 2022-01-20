@@ -40,8 +40,10 @@ try {
     SOURCE.forEach((plugin_source) => {
         console.log(`  - ${plugin_source}`);
     });
-    console.log(` - UglifyJSOption: ${UglifyJSOption}`);
-    console.log(` - CleanCSSOptions: ${CleanCSSOptions}`);
+    console.log(' - UglifyJSOption:');
+    console.log(UglifyJSOption);
+    console.log(' - CleanCSSOptions:');
+    console.log(CleanCSSOptions);
     // Boot tw5
     console.log('Booting up tiddlywiki core.');
     const tw = require('tiddlywiki/boot/boot').TiddlyWiki();
@@ -52,12 +54,24 @@ try {
     if (mkdirsSync(OUTPUT) === false) throw new Error(`Failed to create directory ${OUTPUT}.`);
     // Load plugin folders
     const successPlugins = [];
+
+    console.log('plugins:');
+    console.log(fs.readdirSync('plugins'));
+    console.log('===================');
+    console.log('plugins/bimlas:');
+    console.log(fs.readdirSync('plugins/bimlas'));
+    console.log('===================');
+    console.log('plugins/bimlas/kin-filter:');
+    console.log(fs.readdirSync('plugins/bimlas/kin-filter'));
+    console.log('===================');
+
+
     console.log(`Start packing up ${SOURCE.length} plugins:`);
     SOURCE.forEach((plugin_source) => {
         console.log(` - Packing up plugin ${plugin_source}.`);
         const pluginInfo = tw.loadPluginFolder(plugin_source, undefined);
         if (!pluginInfo || typeof pluginInfo.title !== 'string' || pluginInfo.title === '') {
-            console.log(` - Plugin is unavailable, skip.`);
+            console.log(` - Plugin is unavailable, dose it exist and has a plugin.info file?`);
             return;
         }
         console.log(` - Plugin name is ${pluginInfo.title}.`);
@@ -94,7 +108,7 @@ try {
         successPlugins.push(filePath);
     });
     core.setOutput('output-plugins', successPlugins);
-    onsole.log(`Successfully packed ${successPlugins.length} plugins.`);
+    console.log(`Successfully packed ${successPlugins.length} plugins.`);
 } catch (error) {
     console.error(error);
     core.setFailed(error.message);
