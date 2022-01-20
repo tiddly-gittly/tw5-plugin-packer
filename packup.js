@@ -54,21 +54,6 @@ try {
     if (mkdirsSync(OUTPUT) === false) throw new Error(`Failed to create directory ${OUTPUT}.`);
     // Load plugin folders
     const successPlugins = [];
-
-    console.log('.:');
-    console.log(fs.readdirSync('.'));
-    console.log('===================');
-    console.log('plugins:');
-    console.log(fs.readdirSync('./plugins'));
-    console.log('===================');
-    console.log('plugins/bimlas:');
-    console.log(fs.readdirSync('./plugins/bimlas'));
-    console.log('===================');
-    console.log('plugins/bimlas/kin-filter:');
-    console.log(fs.readdirSync('./plugins/bimlas/kin-filter'));
-    console.log('===================');
-
-
     console.log(`Start packing up ${SOURCE.length} plugins:`);
     SOURCE.forEach((plugin_source) => {
         console.log(` - Packing up plugin ${plugin_source}.`);
