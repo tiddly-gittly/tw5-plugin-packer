@@ -55,14 +55,17 @@ try {
     // Load plugin folders
     const successPlugins = [];
 
+    console.log('.:');
+    console.log(fs.readdirSync('.'));
+    console.log('===================');
     console.log('plugins:');
-    console.log(fs.readdirSync('plugins'));
+    console.log(fs.readdirSync('./plugins'));
     console.log('===================');
     console.log('plugins/bimlas:');
-    console.log(fs.readdirSync('plugins/bimlas'));
+    console.log(fs.readdirSync('./plugins/bimlas'));
     console.log('===================');
     console.log('plugins/bimlas/kin-filter:');
-    console.log(fs.readdirSync('plugins/bimlas/kin-filter'));
+    console.log(fs.readdirSync('./plugins/bimlas/kin-filter'));
     console.log('===================');
 
 
