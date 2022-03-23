@@ -31,10 +31,9 @@ try {
   console.log(` - Minify: ${MINIFY}`);
   console.log(` - Output: ${OUTPUT}`);
   console.log(" - Input:");
-  if (inAhAction)
-    SOURCE.forEach((plugin_source) => {
-      console.log(`   - ${plugin_source}`);
-    });
+  SOURCE.forEach((plugin_source) => {
+    console.log(`   - ${plugin_source}`);
+  });
   console.log(" - UglifyJSOption:");
   console.log(UglifyJSOption);
   console.log(" - CleanCSSOptions:");
