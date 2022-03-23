@@ -12,7 +12,7 @@ inputs:
   minify:
     description: 'Wheter to minify js and css tiddlers, default to "true".'
     required: false
-    default: true
+    default: 'true'
   uglifyjs-options:
     description: 'JSON string of options for UglifyJS. See readme for default values.'
     required: false
@@ -26,4 +26,4 @@ outputs:
     description: 'The JSON file path of the successfully exported plugin, stored as an array of strings in JSON format.'
 runs:
   using: 'node16'
-  main: 'packup.js'
+  main: 'ghaction.js'
