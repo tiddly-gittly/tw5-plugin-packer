@@ -20,7 +20,7 @@ if ((!showHelp && !pluginFolderPath) || pluginFolderPath === "") {
   console.log("You should specify the plugin folder!");
   showHelp = true;
 }
-if (!showHelp && fs.isDirectory(pluginFolderPath)) {
+if (!showHelp && !fs.statSync(pluginFolderPath).isDirectory()) {
   console.log(
     `${pluginFolderPath ? pluginFolderPath : "[null]"} is not a folder!`
   );
@@ -31,7 +31,7 @@ if (showHelp) {
   console.log(
     `Usage: tw5-plugin-packer -i/--input [Plugin Folder] -o/--output/--dist [Output Folder]
 All arguments:
-  * -i/--input: The root folder of your plugin. ./plugin/My/Plugin1 etc.
+  * -i/--input: The root folder of your plugin. plugins/My/Plugin1 etc.
   * -o/--output/--dist: The output path of the packed plugin files, default to "output"
   * --minify: Wheter to minify js and css tiddlers, default to "true"
   * --log: Print out logs, default to "false"
