@@ -4,9 +4,13 @@
 
 Don't know how to use automated build tools? Only know how to put plugins into HTML files? Have to manually export JSON files to publish to Release pages every time? If you are in the same boat, try this Action!
 
+`tw5-plugin-packer` can also be used as an npm library or API. Install `tw5-plugin-packer` globally using npm/yarn/pnpm, etc., and then type the `tw5-plugin-packer` command to view the documentation.
+
 The `tw5-plugin-packer` will package the TiddlyWiki5 plugin folders you wrote into separate JSON files. This is the recommended and easy to distribute and update plugin format. Users simply drag the JSON file into the Wiki window to install the plugin. The same Action applies to plugins in formats such as themes, language packs, etc.!
 
 不会使用自动构建工具？只会把插件放到 HTML 文件里？每次都要手动导出 JSON 文件发布到 Release 页面？如果你也是这样，请试试这个 Action 吧！
+
+`tw5-plugin-packer`同时也可以作为npm库或者API使用，使用npm/yarn/pnpm等全局安装`tw5-plugin-packer`，再打出`tw5-plugin-packer`命令来查看文档。
 
 `tw5-plugin-packer`会将你编写的 TiddlyWiki5 插件文件夹打包成独立的 JSON 文件。这是一种推荐的、易于分发和更新的插件格式，使用者只需将 JSON 文件拖入 Wiki 窗口即可安装插件。对于主题、语言包等格式的插件也同样适用此 Action！
 
