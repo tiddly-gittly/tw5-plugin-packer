@@ -20,7 +20,7 @@ exports.packPlugin = function packPlugin(
   show_log = false
 ) {
   if (exports.mkdirsSync(output) === false)
-    throw new Error(`Failed to create directory ${OUTPUT}.`);
+    throw new Error(`Failed to create directory ${output}.`);
   if (UglifyJSOption === undefined)
     UglifyJSOption = {
       warnings: false,
