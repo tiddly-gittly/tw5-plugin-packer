@@ -4,7 +4,7 @@ const { mkdirsSync, packPlugin } = require("./packup");
 try {
   // Parse params
   const SOURCE = core.getMultilineInput("source");
-  const OUTPUT = core.getInput("output");
+  let OUTPUT = core.getInput("output");
   const MINIFY = core.getInput("minify") === "true";
   const UGLIFYJS_OPTIONS = core.getInput("uglifyjs-options");
   const CLEANCSS_OPTIONS = core.getInput("cleancss-options");
@@ -15,6 +15,18 @@ try {
   try {
     CleanCSSOptions = JSON.parse(CLEANCSS_OPTIONS);
   } catch (e) {}
+  if (UglifyJSOption === undefined)
+    UglifyJSOption = {
+      warnings: false,
+      ie8: true,
+      safari10: true,
+    };
+  if (CleanCSSOptions === undefined)
+    CleanCSSOptions = {
+      compatibility: "ie8",
+      level: 2,
+    };
+  if (OUTPUT === undefined) OUTPUT = "output";
   console.log("Checking options:");
   console.log(` - Minify: ${MINIFY}`);
   console.log(` - Output: ${OUTPUT}`);
