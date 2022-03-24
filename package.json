@@ -1,6 +1,6 @@
 {
     "name": "tw5-plugin-packer",
-    "version": "0.0.8",
+    "version": "0.0.10",
     "description": "Pack up your tiddlywiki5 plugin to json file.",
     "bin": {
         "tw5-plugin-packer": "./index.js"

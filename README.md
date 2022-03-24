@@ -1,6 +1,6 @@
 # tw5-plugin-packer action
 
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/tiddly-gittly/tw5-plugin-packer.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/tiddly-gittly/tw5-plugin-packer/context:javascript) [![](https://img.shields.io/badge/Version-v0.0.9)](https://github.com/tiddly-gittly/tw5-plugin-packer/releases/tag/v0.0.9) [![](https://img.shields.io/badge/Join-TW5CPL-yellow)](https://github.com/tiddly-gittly/TiddlyWiki-CPL)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/tiddly-gittly/tw5-plugin-packer.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/tiddly-gittly/tw5-plugin-packer/context:javascript) [![](https://img.shields.io/badge/Version-v0.0.10)](https://github.com/tiddly-gittly/tw5-plugin-packer/releases/tag/v0.0.10) [![](https://img.shields.io/badge/Join-TW5CPL-yellow)](https://github.com/tiddly-gittly/TiddlyWiki-CPL)
 
 Don't know how to use automated build tools? Only know how to put plugins into HTML files? Have to manually export JSON files to publish to Release pages every time? If you are in the same boat, try this Action!
 
@@ -80,7 +80,7 @@ In the simplest case, pack one plugin at a time 最简单的情况，一次只�
 # It's necessary to use checkout action to fetch your repo, or action cannot find your plugin files!
 # 需要使用checkout action来获取项目，否则无法找到你的插件文件！
 - uses: actions/checkout@v2
-- uses: tiddly-gittly/tw5-plugin-packer@v0.0.9
+- uses: tiddly-gittly/tw5-plugin-packer@v0.0.10
   with:
     source: "src"
     output: "dist"
@@ -92,7 +92,7 @@ You can also package multiple plugins at once 也可以一次打包多个插件�
 # It's necessary to use checkout action to fetch your repo, or action cannot find your plugin files!
 # 需要使用checkout action来获取项目，否则无法找到你的插件文件！
 - uses: actions/checkout@v2
-- uses: tiddly-gittly/tw5-plugin-packer@v0.0.9
+- uses: tiddly-gittly/tw5-plugin-packer@v0.0.10
   with:
     source: |
       src1
@@ -100,3 +100,36 @@ You can also package multiple plugins at once 也可以一次打包多个插件�
       src3
     output: "dist"
 ```
+
+## GitHub Action Template 模板
+
+With the tag added (using `git tag`), build the plugin located in `plugins/My/Plugin` and upload it to Release.
+
+在添加tag的前提下(使用`git tag`)，构建位于`plugins/My/Plugin`的插件，并将其上传到Release：
+
+```yaml
+name: Publish my plugin
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: tiddly-gittly/tw5-plugin-packer@v0.0.10
+        with:
+            source: "plugins/My/Plugin"
+            output: "output"
+      - name: Upload to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+            repo_token: ${{ secrets.GITHUB_TOKEN }}
+            file: output/*.json
+            tag: ${{ env.RELEASE_VERSION }}
+            overwrite: true
+            file_glob: true
