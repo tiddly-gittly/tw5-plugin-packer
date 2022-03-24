@@ -49,7 +49,7 @@ try {
     console.log(` - Packing up plugin ${plugin_source}.`);
     let filePath = packPlugin(
       plugin_source,
-      OUTUPT,
+      OUTPUT,
       UglifyJSOption,
       CleanCSSOptions,
       MINIFY,
