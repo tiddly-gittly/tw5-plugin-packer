@@ -88,7 +88,7 @@ exports.packPlugin = function packPlugin(
   const filePath = path.join(output, fileName);
   if (pluginInfo["plugin-type"] === "theme") {
     // theme only need tiddlers content, other things will use meta file instead
-    fs.writeFileSync(filePath, JSON.stringify(tiddlersJson));
+    fs.writeFileSync(filePath, pluginInfo.text);
   } else {
     fs.writeFileSync(filePath, JSON.stringify(pluginInfo));
   }
