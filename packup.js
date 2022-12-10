@@ -86,12 +86,7 @@ exports.packPlugin = function packPlugin(
     path.basename($tw.utils.generateTiddlerFilepath(pluginInfo.title, {})) +
     ".json";
   const filePath = path.join(output, fileName);
-  if (pluginInfo["plugin-type"] === "theme") {
-    // theme only need tiddlers content, other things will use meta file instead
-    fs.writeFileSync(filePath, pluginInfo.text);
-  } else {
-    fs.writeFileSync(filePath, JSON.stringify(pluginInfo));
-  }
+  fs.writeFileSync(filePath, JSON.stringify(pluginInfo));
   if (show_log)
     console.log(
       `   - Plugin ${pluginInfo.title} has been saved to ${filePath}.`
